@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import './App.css';
+import axios from 'axios';
 
 
 
@@ -8,12 +9,10 @@ function App() {
 
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=807")
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=807") 
       .then(response => {
-        return response.json();
-      }).then(response => {
-        console.log(response);
-        setPokemon(response.results);
+        setPokemon(response.data.results);
+        console.log(response.data);
       }).catch(err=>{
         console.log(err);
       });
